@@ -41,6 +41,8 @@ question_list = ["1. What was the name of the chief mountain who was the "
 #Because of the range function and the index of question_list, question 1 
 #actually becomes question 0 to the code.
 qanda_dict = {0: 'A', 1: 'D', 2: 'C', 3: 'E', 4: 'C', 5: 'B', 6: 'A', 7: 'C'}
+#Listing valid answers for invalid input detection
+valid_ans = ['A', 'B', 'C', 'D', 'E']
 
 #Introducing the program and providing instructions for the user.
 print("Welcome to the legend of Mauao quiz!!")
@@ -48,15 +50,22 @@ print(f"Answer {NUM_OF_QUES} questions based on the Maori Legend of Mauao.")
 print("This quiz is multichoice - Enter 'A', 'B', 'C', 'D', 'E' "
       "based on what answer you think is correct.")
 print("Good luck!")
+
 #Asking the user the questions.
 for quesnum in range(NUM_OF_QUES):
    print(question_list[quesnum])
-   try:
+   while True:
       user_answer = input("Answer: ").upper()
-      if user_answer == qanda_dict[quesnum]:
-         print("Correct")
-         score += POINTS_PER_ANS
+      if user_answer in valid_ans:
+         if user_answer == qanda_dict[quesnum]:
+            print("Correct")
+            score += POINTS_PER_ANS
+         else:
+            print(f"Incorrect.   The correct answer "
+                  f"was {qanda_dict[quesnum]}")
+         break
       else:
-         print(f"Incorrect.   The correct answer was {qanda_dict[quesnum]}")
-   except:
-      print(f"Invalid input. The answer was {qanda_dict[quesnum]}")
+         print(f"Invalid input. Please enter either ")
+   #Printing current score except for on the last question or if score is 0
+   if quesnum + 1 != NUM_OF_QUES and score > 0:
+      print(f"Your current score is {score}")
