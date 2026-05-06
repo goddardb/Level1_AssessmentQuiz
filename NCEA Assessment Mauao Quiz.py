@@ -10,6 +10,7 @@ import time
 import os
 NUM_OF_QUES = 8
 POINTS_PER_ANS = 1
+MIN_DISP_CURR_SCOR = 0
 score = 0
 question_list = ["1. What was the name of the chief mountain who was the "
                  "Nameless One's master?\n\nA) Otanewainuku  B) Manunui  "
@@ -37,10 +38,9 @@ question_list = ["1. What was the name of the chief mountain who was the "
                  "B) 'Blessed'  C) 'Caught by the Dawn'  "
                  "D) 'Mountain of Sorrow'  E) 'Slave Mountain'"
                  ]
-
 #Because of the range function and the index of question_list, question 1 
 #actually becomes question 0 to the code.
-qanda_dict = {0: 'A', 1: 'D', 2: 'C', 3: 'E', 4: 'C', 5: 'B', 6: 'A', 7: 'C'}
+q_and_a_dict = {0: 'A', 1: 'D', 2: 'C', 3: 'E', 4: 'C', 5: 'B', 6: 'A', 7: 'C'}
 #Listing valid answers for invalid input detection
 valid_ans = ['A', 'B', 'C', 'D', 'E']
 
@@ -50,22 +50,40 @@ print(f"Answer {NUM_OF_QUES} questions based on the Maori Legend of Mauao.")
 print("This quiz is multichoice - Enter 'A', 'B', 'C', 'D', 'E' "
       "based on what answer you think is correct.")
 print("Good luck!")
+#Purposeless input statement allows the users to read the instructions
+#and remove it when they are done
+cont = input("Press 'Enter' to continue")
+os.system('cls')
 
 #Asking the user the questions.
+#Accessing the question and answer text
 for quesnum in range(NUM_OF_QUES):
    print(question_list[quesnum])
+   #This code loops until the user enters a valid answer.
    while True:
       user_answer = input("Answer: ").upper()
+      #This code checks if the input is valid.
       if user_answer in valid_ans:
-         if user_answer == qanda_dict[quesnum]:
+         #Comparing input with the correct answer
+         if user_answer == q_and_a_dict[quesnum]:
             print("Correct")
+            #Tracks amount of correct answers
             score += POINTS_PER_ANS
          else:
+            #Supplies feedback
             print(f"Incorrect.   The correct answer "
-                  f"was {qanda_dict[quesnum]}")
+                  f"was {q_and_a_dict[quesnum]}")
          break
+      #For invalid input
       else:
-         print(f"Invalid input. Please enter either ")
+         print(f"Invalid input. Please enter either 'A', 'B', 'C', 'D', 'E'")
    #Printing current score except for on the last question or if score is 0
-   if quesnum + 1 != NUM_OF_QUES and score > 0:
+   if quesnum + 1 != NUM_OF_QUES and score > MIN_DISP_CURR_SCOR:
       print(f"Your current score is {score}")
+   cont = input("Press 'Enter' to continue")
+   time.sleep(0.5)
+   os.system('cls')
+
+#Final stuff
+percentage = score / NUM_OF_QUES * 100
+if percentage == 100:
