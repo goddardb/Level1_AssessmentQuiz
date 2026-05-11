@@ -11,7 +11,11 @@ import os
 NUM_OF_QUES = 8
 POINTS_PER_ANS = 1
 MIN_DISP_CURR_SCOR = 0
+FIRST_SCOR_SPLIT = 80
+SEC_SCOR_SPLIT = 60
+THIRD_SCOR_SPLIT = 35
 score = 0
+corrects = 0
 question_list = ["1. What was the name of the chief mountain who was the "
                  "Nameless One's master?\n\nA) Otanewainuku  B) Manunui  "
                  "C) Maui  D) Maungatautari  E) Omanawa ", 
@@ -69,6 +73,7 @@ for quesnum in range(NUM_OF_QUES):
             print("Correct")
             #Tracks amount of correct answers
             score += POINTS_PER_ANS
+            corrects += 1
          else:
             #Supplies feedback
             print(f"Incorrect.   The correct answer "
@@ -77,13 +82,25 @@ for quesnum in range(NUM_OF_QUES):
       #For invalid input
       else:
          print(f"Invalid input. Please enter either 'A', 'B', 'C', 'D', 'E'")
+
    #Printing current score except for on the last question or if score is 0
+   #(or whatever MIN_DISP_CURR_SCOR is set to.)
    if quesnum + 1 != NUM_OF_QUES and score > MIN_DISP_CURR_SCOR:
       print(f"Your current score is {score}")
    cont = input("Press 'Enter' to continue")
    time.sleep(0.5)
    os.system('cls')
 
-#Final stuff
-percentage = score / NUM_OF_QUES * 100
+#Printing socre and a message based on percentage.
+print(f"Congratulations on completing the quiz!\nYou got a score of {score}.")
+percentage = corrects / NUM_OF_QUES * 100
 if percentage == 100:
+   print("Amazing! You got them all correct!")
+elif percentage >= FIRST_SCOR_SPLIT:
+   print("Nice Work, You answered most of the questions right.")
+elif percentage >= SEC_SCOR_SPLIT:
+   print("Pretty Good, You answered a lot right.")
+elif percentage >= THIRD_SCOR_SPLIT:
+   print("OK, you got some right.")
+else:
+   print("Better luck next time.")
