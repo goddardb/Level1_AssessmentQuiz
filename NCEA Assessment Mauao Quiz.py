@@ -17,30 +17,30 @@ THIRD_SCOR_SPLIT = 35
 score = 0
 corrects = 0
 question_list = ["1. What was the name of the chief mountain who was the "
-                 "Nameless One's master?\n\nA) Otanewainuku  B) Manunui  "
-                 "C) Maui  D) Maungatautari  E) Omanawa ", 
+                 "Nameless One's master?\n\nA) Otanewainuku\nB) Manunui\n"
+                 "C) Maui\nD) Maungatautari\nE) Omanawa", 
                  "2. What was the name of the beautiful mountain the "
-                 "Nameless One was in love with?\n\nA) Waipuna  B) Hinewai  "
-                 "C) Karewa  D) Puwhenua  E) Matarangi", 
+                 "Nameless One was in love with?\n\nA) Waipuna\nB) Hinewai\n"
+                 "C) Karewa\nD) Puwhenua\nE) Matarangi", 
                  "3. Why was the Nameless One sad?\n\n"
-                 "A) The trees on him were dying  B) Otanewainuku was leaving  "
-                 "C) Puwhenua did not love him  "
-                 "D) The Moa were being hunted to extinction  E) He had no name"
-                 , "4. Who helped the nameless mountain?\n\nA) Forest birds  "
-                 "B) Otanewainuku and Puwhenua  C) The rivers  "
-                 "D) Tane Mahuta and Papatuanuku  E) Patupaiarehe", 
+                 "A) The trees on him were dying\nB) Otanewainuku was leaving\n"
+                 "C) Puwhenua did not love him\n"
+                 "D) The Moa were being hunted to extinction\nE) He had no name"
+                 , "4. Who helped the nameless mountain?\n\nA) Forest birds\n"
+                 "B) Otanewainuku and Puwhenua\nC) The rivers\n"
+                 "D) Tane Mahuta and Papatuanuku\nE) Patupaiarehe", 
                  "5. How did the Patupaiarehe get the nameless mountain"
-                 "to the entrance of Tauranga Moana?\n\nA) Magic  B) Carried "
-                 "him  C) Using harakeke ropes  D) Gave him legs  "
+                 "to the entrance of Tauranga Moana?\n\nA) Magic\nB) Carried "
+                 "him\nC) Using harakeke ropes\nD) Gave him legs\n"
                  "E) Dug a path to push him down", "6. What stopped the "
                  "Patupaiarehe when they were dragging the Nameless mountain?\n"
-                 "\nA) Fatigue  B) The sun rising  C) Evil spirits "
-                 "D) The Nameless One's protests  E) Tane Mahuta", "7. What was"
+                 "\nA) Fatigue\nB) The sun rising\nC) Evil spirits\n"
+                 "D) The Nameless One's protests\nE) Tane Mahuta", "7. What was"
                  " the name given to the mountain at the end of the story?\n\n"
-                 "A) Mauao  B) Maui  C) Te Rapuhia  D) Roderick  E) Maungatapu"
-                 , "8. What does 'Mauao' mean?\n\nA) 'Lowly one'  "
-                 "B) 'Blessed'  C) 'Caught by the Dawn'  "
-                 "D) 'Mountain of Sorrow'  E) 'Slave Mountain'"
+                 "A) Mauao\nB) Maui\nC) Te Rapuhia\nD) Roderick\nE) Maungatapu"
+                 , "8. What does 'Mauao' mean?\n\nA) 'Lowly one'\n"
+                 "B) 'Blessed'\nC) 'Caught by the Dawn'\n"
+                 "D) 'Mountain of Sorrow'\nE) 'Slave Mountain'"
                  ]
 #Because of the range function and the index of question_list, question 1 
 #actually becomes question 0 to the code.
@@ -81,7 +81,10 @@ for quesnum in range(NUM_OF_QUES):
          break
       #For invalid input
       else:
-         print(f"Invalid input. Please enter either 'A', 'B', 'C', 'D', 'E'")
+         print(f"Invalid input. Please enter either 'A', 'B', 'C', 'D', or 'E'")
+         time.sleep(1.5)
+         os.system('cls')
+         print(question_list[quesnum])
 
    #Printing current score except for on the last question or if score is 0
    #(or whatever MIN_DISP_CURR_SCOR is set to.)
@@ -92,7 +95,6 @@ for quesnum in range(NUM_OF_QUES):
    os.system('cls')
 
 #Printing socre and a message based on percentage.
-print(f"Congratulations on completing the quiz!\nYou got a score of {score}.")
 percentage = corrects / NUM_OF_QUES * 100
 if percentage == 100:
    print("Amazing! You got them all correct!")
@@ -104,3 +106,4 @@ elif percentage >= THIRD_SCOR_SPLIT:
    print("OK, you got some right.")
 else:
    print("Better luck next time.")
+print(f"Congratulations on completing the quiz!\nYou got a score of {score}.")
